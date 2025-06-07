@@ -1,0 +1,618 @@
+{% comment %}
+Theme App Extension - Enhanced with Advanced Visual Effects - Close Button Updated
+{% endcomment %}
+
+{% assign banner_enabled = shop.metafields.promotional_banner.enabled.value %}
+{% assign banner_text = shop.metafields.promotional_banner.banner_text.value %}
+
+{% if banner_enabled == true or banner_enabled == "true" %}
+<div class="promotional-banner" id="promotional-banner-{{ block.id }}">
+  <!-- Enhanced background layers -->
+  <div class="promotional-banner__background-layer-1"></div>
+  <div class="promotional-banner__background-layer-2"></div>
+  <div class="promotional-banner__background-pattern"></div>
+  <div class="promotional-banner__particle-system">
+  </div>
+  
+  <div class="promotional-banner__content">
+    <div class="promotional-banner__glow-orb"></div>
+    
+    <p class="promotional-banner__text">
+      {{ banner_text | default: block.settings.banner_text | default: '🌿 Free Shipping on All Orders! 🌿' }}
+    </p>
+    
+    <div class="promotional-banner__code">
+      <div class="code-background-effect"></div>
+      Use Code: <span class="code-highlight pulsing">DIGITALGURUJI</span>
+      <div class="code-sparkle sparkle-1">✨</div>
+    </div>
+    
+    <div class="promotional-banner__urgency">
+      <div class="urgency-pulse-ring"></div>
+      ⏰ Limited Time Offer - Don't Miss Out!
+    </div>
+  </div>
+  
+  <button class="promotional-banner__close" onclick="closeBanner('promotional-banner-{{ block.id }}')" aria-label="Close banner">
+    <div class="close-button-glow"></div>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+</div>
+{% endif %}
+
+<style>
+  .promotional-banner {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 25px 0;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    z-index: 1000;
+    overflow: hidden;
+    border-radius: 0;
+    width: 100vw;
+     margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    /* Advanced shadow system */
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.4),
+      0 20px 80px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  /* GAP FIX: All background layers with no border-radius */
+  .promotional-banner__background-layer-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(135deg, 
+      #667eea 0%, 
+      #764ba2 25%, 
+      #f093fb 50%, 
+      #f5576c 75%, 
+      #4facfe 100%);
+    background-size: 400% 400%;
+    animation: advancedGradientFlow 12s ease-in-out infinite;
+    opacity: 0.9;
+  }
+
+  .promotional-banner__background-layer-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(45deg,
+      rgba(255, 0, 150, 0.3) 0%,
+      rgba(0, 255, 255, 0.2) 25%,
+      rgba(255, 255, 0, 0.1) 50%,
+      rgba(150, 0, 255, 0.2) 75%,
+      rgba(255, 100, 0, 0.3) 100%);
+    background-size: 600% 600%;
+    animation: colorWave 8s ease-in-out infinite reverse;
+    mix-blend-mode: overlay;
+  }
+
+  .promotional-banner__background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 0%, transparent 70%),
+      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 70%),
+      radial-gradient(circle at 50% 100%, rgba(255,255,255,0.08) 0%, transparent 70%),
+      /* Advanced mesh pattern */
+      linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.02) 50%, transparent 55%),
+      linear-gradient(-45deg, transparent 45%, rgba(255,255,255,0.02) 50%, transparent 55%);
+    background-size: 200px 200px, 300px 300px, 250px 250px, 50px 50px, 50px 50px;
+    animation: meshPattern 15s linear infinite;
+    opacity: 0.6;
+  }
+
+  /* GAP FIX: Shimmer with no border-radius */
+  .promotional-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255,255,255,0.1) 25%,
+      rgba(255,255,255,0.3) 50%,
+      rgba(255,255,255,0.1) 75%,
+      transparent 100%);
+    animation: enhancedShimmer 6s infinite;
+    z-index: 5;
+  }
+
+  /* Advanced particle system */
+  .promotional-banner__particle-system {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 0;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particleFloat 6s ease-in-out infinite;
+  }
+
+  .particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+  .particle-2 { top: 60%; left: 20%; animation-delay: 1s; }
+  .particle-3 { top: 30%; right: 15%; animation-delay: 2s; }
+  .particle-4 { bottom: 40%; right: 25%; animation-delay: 3s; }
+  .particle-5 { bottom: 20%; left: 30%; animation-delay: 4s; }
+  .particle-6 { top: 70%; right: 35%; animation-delay: 5s; }
+
+  .promotional-banner__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  /* Floating glow orb */
+  .promotional-banner__glow-orb {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, 
+      rgba(255, 100, 200, 0.3) 0%, 
+      rgba(100, 200, 255, 0.2) 50%, 
+      transparent 70%);
+    border-radius: 50%;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: glowOrb 8s ease-in-out infinite;
+    filter: blur(2px);
+  }
+
+  .promotional-banner__text {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    /* Advanced text effects */
+    background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    position: relative;
+  }
+
+  .promotional-banner__code {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    position: relative;
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    /* Advanced glass morphism effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+
+  .code-background-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 100%);
+    animation: codeBackgroundSweep 3s ease-in-out infinite;
+  }
+
+  .code-highlight {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 2px;
+    animation: rainbowCode 3s ease-in-out infinite;
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Sparkle effects around code */
+  .code-sparkle {
+    position: absolute;
+    font-size: 12px;
+    animation: sparkleFloat 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .sparkle-1 { top: -8px; left: -15px; animation-delay: 0s; }
+  .sparkle-2 { top: -8px; right: -15px; animation-delay: 0.7s; }
+  .sparkle-3 { bottom: -8px; right: 20px; animation-delay: 1.4s; }
+
+  .promotional-banner__urgency {
+    font-size: 14px;
+    color: #ff6b6b;
+    font-weight: 600;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+    animation: urgencyGlow 2s ease-in-out infinite;
+  }
+
+  .urgency-pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 107, 107, 0.4);
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    animation: pulseRing 2s ease-out infinite;
+  }
+
+  .promotional-banner__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 15;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .close-button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .promotional-banner__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .promotional-banner__close:hover .close-button-glow {
+    opacity: 1;
+  }
+
+  /* Advanced Animations */
+  @keyframes advancedGradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 25%; }
+    50% { background-position: 50% 100%; }
+    75% { background-position: 25% 0%; }
+  }
+
+  @keyframes colorWave {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes meshPattern {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(50px) translateY(50px); }
+  }
+
+  @keyframes particleFloat {
+    0%, 100% { 
+      transform: translateY(0px) scale(1);
+      opacity: 0.3;
+    }
+    25% { 
+      transform: translateY(-15px) scale(1.2);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-25px) scale(0.8);
+      opacity: 1;
+    }
+    75% { 
+      transform: translateY(-10px) scale(1.1);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes enhancedShimmer {
+    0% { left: -100%; opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  @keyframes glowOrb {
+    0%, 100% { 
+      transform: translateX(-50%) translateY(0px) scale(1);
+      opacity: 0.6;
+    }
+    33% { 
+      transform: translateX(-40%) translateY(-10px) scale(1.2);
+      opacity: 0.8;
+    }
+    66% { 
+      transform: translateX(-60%) translateY(-5px) scale(0.9);
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes textShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes codeBackgroundSweep {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes rainbowCode {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes sparkleFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg) scale(1);
+      opacity: 0.7;
+    }
+    50% { 
+      transform: translateY(-8px) rotate(180deg) scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  @keyframes urgencyGlow {
+    0%, 100% { 
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+      background: rgba(255, 107, 107, 0.1);
+    }
+    50% { 
+      box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+      background: rgba(255, 107, 107, 0.15);
+    }
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .promotional-banner {
+      padding: 20px 0;
+      border-radius: 0;
+      min-height: 80px;
+    }
+
+    .promotional-banner__content {
+      padding: 0 15px;
+    }
+    
+    .promotional-banner__text {
+      font-size: 18px;
+    }
+
+    .promotional-banner__code {
+      font-size: 16px;
+      padding: 10px 16px;
+    }
+
+    .code-highlight {
+      font-size: 18px;
+    }
+
+    .promotional-banner__close {
+      width: 36px;
+      height: 36px;
+      top: 8px;
+      right: 8px;
+    }
+
+    .promotional-banner__glow-orb {
+      width: 120px;
+      height: 120px;
+      top: -60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .promotional-banner {
+      padding: 18px 0;
+      min-height: 70px;
+      border-radius: 0;
+    }
+
+    .promotional-banner__content {
+      padding: 0 12px;
+    }
+    
+    .promotional-banner__text {
+      font-size: 16px;
+    }
+
+    .promotional-banner__code {
+      font-size: 14px;
+      padding: 8px 14px;
+    }
+
+    .code-highlight {
+      font-size: 16px;
+    }
+
+    .promotional-banner__close {
+      width: 32px;
+      height: 32px;
+      top: 6px;
+      right: 6px;
+    }
+
+    .promotional-banner__glow-orb {
+      width: 100px;
+      height: 100px;
+      top: -50px;
+    }
+  }
+
+  /* Accessibility and Performance */
+  @media (prefers-reduced-motion: reduce) {
+    .promotional-banner *,
+    .promotional-banner::before,
+    .promotional-banner::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .promotional-banner {
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 20px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* Enhanced focus styles */
+  .promotional-banner:focus-within {
+    outline: 3px solid rgba(255,255,255,0.6);
+    outline-offset: 3px;
+  }
+
+  .promotional-banner__close:focus {
+    outline: 2px solid rgba(255,255,255,0.8);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+  }
+
+  /* Banner hidden state */
+  .promotional-banner.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  function closeBanner(bannerId) {
+    const banner = document.getElementById(bannerId);
+    if (banner) {
+      // Add smooth fade out animation before hiding
+      banner.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateY(-100%)';
+      
+      setTimeout(() => {
+        banner.classList.add('hidden');
+        sessionStorage.setItem('banner-' + bannerId + '-closed', 'true');
+      }, 500);
+    }
+  }
+
+  // Check if banner was previously closed in this session
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('promotional-banner-{{ block.id }}');
+    if (banner && sessionStorage.getItem('banner-promotional-banner-{{ block.id }}-closed') === 'true') {
+      banner.classList.add('hidden');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Promotional Banner",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text (Fallback)",
+      "default": "🌿 Free Shipping on All Orders! 🌿",
+      "info": "This text will be used if app settings are not configured"
+    }
+  ]
+}
+{% endschema %}
