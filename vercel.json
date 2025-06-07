@@ -1,18 +1,25 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "build",
+  "outputDirectory": "build/client",
   "installCommand": "npm install",
   "framework": null,
   "functions": {
-    "build/server/index.js": {
+    "app/entry.server.tsx": {
       "runtime": "nodejs18.x"
     }
   },
   "routes": [
     {
+      "src": "/build/(.*)",
+      "dest": "/build/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/build/server/index.js"
+      "dest": "/app/entry.server.tsx"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
