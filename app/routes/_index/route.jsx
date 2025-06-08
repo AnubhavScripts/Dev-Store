@@ -18,7 +18,7 @@ export default function App() {
   const styles = {
     index: {
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -26,41 +26,41 @@ export default function App() {
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     },
     content: {
-      background: 'rgba(255, 255, 255, 0.95)',
+      background: 'rgba(255, 255, 255, 0.98)',
       backdropFilter: 'blur(10px)',
       borderRadius: '20px',
       padding: '3rem',
       maxWidth: '600px',
       width: '100%',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1)',
+      border: '1px solid rgba(0, 0, 0, 0.1)',
       animation: 'fadeInUp 0.8s ease-out',
     },
     heading: {
       fontSize: '2.5rem',
       fontWeight: '700',
-      color: '#2d3748',
+      color: '#000000',
       margin: '0 0 1rem 0',
       textAlign: 'center',
       lineHeight: '1.2',
-      background: 'linear-gradient(135deg, #667eea, #764ba2)',
+      background: 'linear-gradient(135deg, #000000, #333333)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
     },
     text: {
       fontSize: '1.125rem',
-      color: '#4a5568',
+      color: '#2d2d2d',
       textAlign: 'center',
       margin: '0 0 2.5rem 0',
       lineHeight: '1.6',
     },
     form: {
-      background: '#f7fafc',
+      background: '#f8f9fa',
       borderRadius: '12px',
       padding: '2rem',
       margin: '2.5rem 0',
-      border: '1px solid #e2e8f0',
+      border: '2px solid #e9ecef',
       transition: 'all 0.3s ease',
     },
     label: {
@@ -70,29 +70,30 @@ export default function App() {
     labelText: {
       display: 'block',
       fontWeight: '600',
-      color: '#2d3748',
+      color: '#000000',
       marginBottom: '0.5rem',
       fontSize: '0.95rem',
     },
     input: {
       width: '100%',
       padding: '0.875rem 1rem',
-      border: '2px solid #e2e8f0',
+      border: '2px solid #dee2e6',
       borderRadius: '8px',
       fontSize: '1rem',
       transition: 'all 0.3s ease',
       background: 'white',
       marginBottom: '0.5rem',
       boxSizing: 'border-box',
+      color: '#000000',
     },
     helperText: {
       fontSize: '0.875rem',
-      color: '#718096',
+      color: '#666666',
       fontStyle: 'italic',
     },
     button: {
       width: '100%',
-      background: 'linear-gradient(135deg, #667eea, #764ba2)',
+      background: 'linear-gradient(135deg, #000000, #333333)',
       color: 'white',
       border: 'none',
       padding: '1rem 1.5rem',
@@ -111,7 +112,7 @@ export default function App() {
     },
     listItem: {
       background: 'white',
-      border: '1px solid #e2e8f0',
+      border: '2px solid #e9ecef',
       borderRadius: '10px',
       padding: '1.5rem',
       marginBottom: '1rem',
@@ -120,7 +121,7 @@ export default function App() {
       overflow: 'hidden',
     },
     listItemStrong: {
-      color: '#2d3748',
+      color: '#000000',
       fontWeight: '700',
       fontSize: '1.1rem',
       display: 'block',
@@ -130,48 +131,52 @@ export default function App() {
 
   const handleFormHover = (e) => {
     e.target.style.transform = 'translateY(-2px)';
-    e.target.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+    e.target.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+    e.target.style.borderColor = '#333333';
   };
 
   const handleFormLeave = (e) => {
     e.target.style.transform = 'translateY(0)';
     e.target.style.boxShadow = 'none';
+    e.target.style.borderColor = '#e9ecef';
   };
 
   const handleInputFocus = (e) => {
-    e.target.style.borderColor = '#667eea';
-    e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+    e.target.style.borderColor = '#000000';
+    e.target.style.boxShadow = '0 0 0 3px rgba(0, 0, 0, 0.1)';
     e.target.style.transform = 'translateY(-1px)';
   };
 
   const handleInputBlur = (e) => {
-    e.target.style.borderColor = '#e2e8f0';
+    e.target.style.borderColor = '#dee2e6';
     e.target.style.boxShadow = 'none';
     e.target.style.transform = 'translateY(0)';
   };
 
   const handleButtonHover = (e) => {
     e.target.style.transform = 'translateY(-2px)';
-    e.target.style.boxShadow = '0 10px 25px rgba(102, 126, 234, 0.3)';
-    e.target.style.background = 'linear-gradient(135deg, #5a67d8, #6b46c1)';
+    e.target.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+    e.target.style.background = 'linear-gradient(135deg, #333333, #555555)';
   };
 
   const handleButtonLeave = (e) => {
     e.target.style.transform = 'translateY(0)';
     e.target.style.boxShadow = 'none';
-    e.target.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+    e.target.style.background = 'linear-gradient(135deg, #000000, #333333)';
   };
 
   const handleListItemHover = (e) => {
     e.currentTarget.style.transform = 'translateX(5px)';
     e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
-    e.currentTarget.style.borderColor = '#667eea';
+    e.currentTarget.style.borderColor = '#333333';
+    e.currentTarget.style.background = '#fafafa';
   };
 
   const handleListItemLeave = (e) => {
     e.currentTarget.style.transform = 'translateX(0)';
     e.currentTarget.style.boxShadow = 'none';
-    e.currentTarget.style.borderColor = '#e2e8f0';
+    e.currentTarget.style.borderColor = '#e9ecef';
+    e.currentTarget.style.background = 'white';
   };
 
   return (
@@ -223,7 +228,7 @@ export default function App() {
       <div style={styles.index}>
         <div style={styles.content} className="responsive-content">
          <h1 style={styles.heading} className="responsive-heading">
-  🎉 Highlight Deals Instantly
+   Highlight Deals Instantly
 </h1>
 <p style={styles.text} className="responsive-text">
   Turn visitors into buyers with eye-catching promotional banners—just plug and play.
